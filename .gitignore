@@ -5,3 +5,4 @@ packages/
 Temp/
 *.user
 *.suo
+node_modules/

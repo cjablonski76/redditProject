@@ -27,6 +27,8 @@
     "coffee-script": "~1.7.1",
     "gulp-util": "~3.0.0",
     "gulp-inject": "~1.0.1",
-    "gulp-angular-filesort": "~1.0.3"
+    "gulp-angular-filesort": "~1.0.3",
+    "angular": "~1.2.21",
+    "angular-route": "~1.2.x"
   }
 }

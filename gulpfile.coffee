@@ -12,6 +12,7 @@ rename = require 'gulp-rename'
 coffee = require 'gulp-coffee'
 gutil = require 'gulp-util'
 inject = require 'gulp-inject'
+rename = require 'gulp-rename'
 
 # Lint Task
 gulp.task 'lint', () ->
@@ -40,9 +41,11 @@ gulp.task 'coffee', () ->
         .pipe gulp.dest 'dist'
 
 gulp.task 'index', ['coffee'], () ->
-    target = gulp.src 'src/index.html'
-    target.pipe inject (gulp.src './dist/**/*.js', {read: false}), {ignorePath: 'dist', addRootSlash: false}
-        .pipe gulp.dest 'dist'
+    target = gulp.src 'src/templateIndex.html'
+    sources = gulp.src(['./dist/**/*.js', './node_modules/angular-route/**/angular-route.js'], {read: false});
+    target.pipe inject sources, {relative: true}
+        .pipe rename 'index.html'
+        .pipe gulp.dest 'src'
 
 
  # Watch Files For Changes

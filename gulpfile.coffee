@@ -9,6 +9,9 @@ sass = require 'gulp-sass'
 concat = require 'gulp-concat'
 uglify = require 'gulp-uglify'
 rename = require 'gulp-rename'
+coffee = require 'gulp-coffee'
+gutil = require 'gulp-util'
+inject = require 'gulp-inject'
 
 # Lint Task
 gulp.task 'lint', () ->
@@ -30,6 +33,17 @@ gulp.task 'scripts', () ->
         .pipe rename 'all.min.js'
         .pipe uglify
         .pipe gulp.dest 'dist'
+
+gulp.task 'coffee', () ->
+    gulp.src 'src/**/*.coffee'
+        .pipe(coffee().on('error', gutil.log))
+        .pipe gulp.dest 'dist'
+
+gulp.task 'index', ['coffee'], () ->
+    target = gulp.src 'src/index.html'
+    target.pipe inject (gulp.src './dist/**/*.js', {read: false}), {ignorePath: 'dist', addRootSlash: false}
+        .pipe gulp.dest 'dist'
+
 
  # Watch Files For Changes
 gulp.task 'watch', () ->

@@ -16,43 +16,43 @@ rename = require 'gulp-rename'
 
 # Lint Task
 gulp.task 'lint', () ->
-    gulp.src 'js/*.js'
-        .pipe jshint
-        .pipe jshint.reporter 'default'
+		gulp.src 'js/*.js'
+				.pipe jshint
+				.pipe jshint.reporter 'default'
 
 # Compile Our Sass
 gulp.task 'sass', () ->
-    gulp.src 'scss/*.scss'
-        .pipe sass
-        .pipe gulp.dest 'css'
+		gulp.src 'scss/*.scss'
+				.pipe sass
+				.pipe gulp.dest 'css'
 
 # Concatenate & Minify JS
 gulp.task 'scripts', () ->
-    gulp.src 'js/*.js'
-        .pipe concat 'all.js'
-        .pipe gulp.dest 'dist'
-        .pipe rename 'all.min.js'
-        .pipe uglify
-        .pipe gulp.dest 'dist'
+		gulp.src 'js/*.js'
+				.pipe concat 'all.js'
+				.pipe gulp.dest 'dist'
+				.pipe rename 'all.min.js'
+				.pipe uglify
+				.pipe gulp.dest 'dist'
 
 gulp.task 'coffee', () ->
-    gulp.src 'src/**/*.coffee'
-        .pipe(coffee().on('error', gutil.log))
-        .pipe gulp.dest 'dist'
+		gulp.src 'src/**/*.coffee'
+				.pipe(coffee().on('error', gutil.log))
+				.pipe gulp.dest 'dist'
 
 gulp.task 'index', ['coffee'], () ->
-    target = gulp.src 'src/templateIndex.html'
-    sources = gulp.src(['./dist/**/*.js', './node_modules/angular-route/**/angular-route.js'], {read: false});
-    target.pipe inject sources, {relative: true}
-        .pipe rename 'index.html'
-        .pipe gulp.dest 'src'
+		target = gulp.src 'src/templateIndex.html'
+		sources = gulp.src(['./dist/**/*.js', './node_modules/angular-route/**/angular-route.js'], {read: false});
+		target.pipe inject sources, {relative: true}
+				.pipe rename 'index.html'
+				.pipe gulp.dest 'src'
 
 
  # Watch Files For Changes
 gulp.task 'watch', () ->
-    gulp.watch 'js/*.js', ['lint', 'scripts']
-    gulp.watch 'scss/*.scss', ['sass']
-    return
+		gulp.watch 'js/*.js', ['lint', 'scripts']
+		gulp.watch 'scss/*.scss', ['sass']
+		return
 
 # Default Task
 gulp.task 'default', ['lint', 'sass', 'scripts', 'watch']

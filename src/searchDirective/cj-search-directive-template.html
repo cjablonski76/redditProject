@@ -1,0 +1,13 @@
+<form>
+	<div>
+		<input ng-model="localSearchText" type="text" />
+	</div>
+	<div>
+		<button ng-click="clearSearch()" class="btn btn-small">Clear</button>
+		<button ng-click="doSearch()"    class="btn btn-small">Search</button>
+	</div>
+	<div ng-show='isSearching'>
+		<img ng-show='isSearching' src='http://loadinggif.com/images/image-selection/3.gif'/>
+		Searching...
+	</div>
+</form>

@@ -1,4 +1,5 @@
 <div>
-	<button on-click="plus()" class="btn btn-small">Plus</button>
-	<button on-click="minus()" class="btn btn-small">Minus</button>
+	<span><button class="btn btn-primary btn-sm" ng-click="tryGivePoint()" ng-disabled="!canGive()">-</button>
+	<span><h2>{{current}}</h2></span>
+	<span><button class="btn btn-primary btn-sm " ng-click="tryReceivePoint()" ng-disabled="!canReceive()">+</button>
 </div>

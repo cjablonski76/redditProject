@@ -28,7 +28,8 @@ angular.module 'app'
 						$scope.remaining++
 						return 1
 					return 0
-				this.remaining = -> $scope.remaining
+				this.remaining = ->
+					$scope.remaining
 				return
 			link: (scope, element, attr) ->
 				test = 2
@@ -64,9 +65,9 @@ angular.module 'app'
 					if !isValid(scope) || !scope.canGive(scope)
 						return
 					scope.current -= masterCtrl.tryGivePoint()
-				scope.canReceive = () ->
+				scope.canReceive = ->
 					return scope.current < +scope.max && scope.remaining > 0
-				scope.canGive = () ->
+				scope.canGive = ->
 					return scope.current > +scope.min
 
 				return
